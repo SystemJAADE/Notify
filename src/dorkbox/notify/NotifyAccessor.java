@@ -19,46 +19,44 @@ import dorkbox.tweenEngine.TweenAccessor;
 
 class NotifyAccessor implements TweenAccessor<LookAndFeel> {
 
-    static final int Y_POS = 1;
-    static final int X_Y_POS = 2;
-    static final int PROGRESS = 3;
+  static final int Y_POS = 1;
+  static final int X_Y_POS = 2;
+  static final int PROGRESS = 3;
 
 
-    NotifyAccessor() {
-    }
+  NotifyAccessor() {
+  }
 
-    @Override
-    public
-    int getValues(final LookAndFeel target, final int tweenType, final float[] returnValues) {
-        switch (tweenType) {
-            case Y_POS:
-                returnValues[0] = (float) target.getY();
-                return 1;
-            case X_Y_POS:
-                returnValues[0] = (float) target.getX();
-                returnValues[1] = (float) target.getY();
-                return 2;
-            case PROGRESS:
-                returnValues[0] = (float) target.getProgress();
-                return 1;
-        }
+  @Override
+  public int getValues(final LookAndFeel target, final int tweenType, final float[] returnValues) {
+    switch (tweenType) {
+      case Y_POS:
+        returnValues[0] = (float) target.getY();
+        return 1;
+      case X_Y_POS:
+        returnValues[0] = (float) target.getX();
+        returnValues[1] = (float) target.getY();
+        return 2;
+      case PROGRESS:
+        returnValues[0] = (float) target.getProgress();
         return 1;
     }
+    return 1;
+  }
 
-    @SuppressWarnings({"NumericCastThatLosesPrecision", "UnnecessaryReturnStatement"})
-    @Override
-    public
-    void setValues(final LookAndFeel target, final int tweenType, final float[] newValues) {
-        switch (tweenType) {
-            case Y_POS:
-                target.setY((int) newValues[0]);
-                return;
-            case X_Y_POS:
-                target.setLocation((int) newValues[0], (int) newValues[1]);
-                return;
-            case PROGRESS:
-                target.setProgress((int) newValues[0]);
-                return;
-        }
+  @SuppressWarnings({"NumericCastThatLosesPrecision", "UnnecessaryReturnStatement"})
+  @Override
+  public void setValues(final LookAndFeel target, final int tweenType, final float[] newValues) {
+    switch (tweenType) {
+      case Y_POS:
+        target.setY((int) newValues[0]);
+        return;
+      case X_Y_POS:
+        target.setLocation((int) newValues[0], (int) newValues[1]);
+        return;
+      case PROGRESS:
+        target.setProgress((int) newValues[0]);
+        return;
     }
+  }
 }

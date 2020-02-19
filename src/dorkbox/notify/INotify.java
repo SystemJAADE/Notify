@@ -17,11 +17,11 @@ package dorkbox.notify;
 
 public
 interface INotify {
-    void close();
+  void close();
 
-    void shake(int durationInMillis, int amplitude);
+  void shake(int durationInMillis, int amplitude);
 
-    void setVisible(boolean b);
+  void setVisible(boolean b);
 
-    void onClick(int x, int y);
+  void onClick(int x, int y);
 }

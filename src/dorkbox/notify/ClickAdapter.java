@@ -20,13 +20,12 @@ import java.awt.event.MouseEvent;
 
 class ClickAdapter extends MouseAdapter {
 
-    ClickAdapter() {
-    }
+  ClickAdapter() {
+  }
 
-    @Override
-    public
-    void mouseReleased(final MouseEvent e) {
-        INotify parent = ((NotifyCanvas) e.getSource()).parent;
-        parent.onClick(e.getX(), e.getY());
-    }
+  @Override
+  public void mouseReleased(final MouseEvent e) {
+    INotify parent = ((NotifyCanvas) e.getSource()).parent;
+    parent.onClick(e.getX(), e.getY());
+  }
 }

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_notify.main" default="compile.module.notify.main">
+  <dirname property="module.notify.main.basedir" file="${ant.file.module_notify.main}"/>
+  
+  <property name="module.jdk.home.notify.main" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.notify.main" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.notify.main" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.notify.main" value="-encoding UTF-8 -source 6 -target 1.6 ${compiler.args}"/>
+  
+  <property name="notify.main.output.dir" value="${module.notify.main.basedir}/../../build/classes/java/main"/>
+  <property name="notify.main.testoutput.dir" value="${module.notify.main.basedir}/../../build/classes/java/main"/>
+  
+  <path id="notify.main.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="notify.main.module.production.classpath">
+    <path refid="${module.jdk.classpath.notify.main}"/>
+    <path refid="library.gradle:_com.dorkbox:tweenengine:8.3.classpath"/>
+    <path refid="library.gradle:_com.dorkbox:utilities:1.1.classpath"/>
+    <path refid="library.gradle:_com.dorkbox:objectpool:2.11.classpath"/>
+  </path>
+  
+  <path id="notify.main.runtime.production.module.classpath">
+    <pathelement location="${notify.main.output.dir}"/>
+    <path refid="library.gradle:_com.dorkbox:tweenengine:8.3.classpath"/>
+    <path refid="library.gradle:_com.dorkbox:utilities:1.1.classpath"/>
+    <path refid="library.gradle:_com.dorkbox:objectpool:2.11.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_com.github.jponge:lzma-java:1.3.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.uuid:java-uuid-generator:3.1.5.classpath"/>
+    <path refid="library.gradle:_com.esotericsoftware:kryo:5.0.0-rc2.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-all:4.1.24.final.classpath"/>
+    <path refid="library.gradle:_org.bouncycastle:bcpg-jdk15on:1.60.classpath"/>
+    <path refid="library.gradle:_org.bouncycastle:bcmail-jdk15on:1.60.classpath"/>
+    <path refid="library.gradle:_org.bouncycastle:bctls-jdk15on:1.60.classpath"/>
+    <path refid="library.gradle:_org.bouncycastle:bcpkix-jdk15on:1.60.classpath"/>
+    <path refid="library.gradle:_org.bouncycastle:bcprov-jdk15on:1.60.classpath"/>
+    <path refid="library.gradle:_org.lwjgl:lwjgl-xxhash:3.2.0.classpath"/>
+    <path refid="library.gradle:_org.javassist:javassist:3.23.0-ga.classpath"/>
+    <path refid="library.gradle:_com.dorkbox:shellexecutor:1.1.classpath"/>
+    <path refid="library.gradle:_net.jodah:typetools:0.6.1.classpath"/>
+    <path refid="library.gradle:_net.java.dev.jna:jna-platform:4.5.2.classpath"/>
+    <path refid="library.gradle:_net.java.dev.jna:jna:4.5.2.classpath"/>
+    <path refid="library.gradle:_com.esotericsoftware:reflectasm:1.11.8.classpath"/>
+    <path refid="library.gradle:_org.objenesis:objenesis:2.6.classpath"/>
+    <path refid="library.gradle:_com.esotericsoftware:minlog:1.3.1.classpath"/>
+    <path refid="library.gradle:_org.lwjgl:lwjgl:3.2.0.classpath"/>
+  </path>
+  
+  <path id="notify.main.module.classpath">
+    <path refid="${module.jdk.classpath.notify.main}"/>
+    <pathelement location="${notify.main.output.dir}"/>
+    <path refid="library.gradle:_com.dorkbox:tweenengine:8.3.classpath"/>
+    <path refid="library.gradle:_com.dorkbox:utilities:1.1.classpath"/>
+    <path refid="library.gradle:_com.dorkbox:objectpool:2.11.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_com.github.jponge:lzma-java:1.3.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.uuid:java-uuid-generator:3.1.5.classpath"/>
+    <path refid="library.gradle:_com.esotericsoftware:kryo:5.0.0-rc2.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-all:4.1.24.final.classpath"/>
+    <path refid="library.gradle:_org.bouncycastle:bcpg-jdk15on:1.60.classpath"/>
+    <path refid="library.gradle:_org.bouncycastle:bcmail-jdk15on:1.60.classpath"/>
+    <path refid="library.gradle:_org.bouncycastle:bctls-jdk15on:1.60.classpath"/>
+    <path refid="library.gradle:_org.bouncycastle:bcpkix-jdk15on:1.60.classpath"/>
+    <path refid="library.gradle:_org.bouncycastle:bcprov-jdk15on:1.60.classpath"/>
+    <path refid="library.gradle:_org.lwjgl:lwjgl-xxhash:3.2.0.classpath"/>
+    <path refid="library.gradle:_org.javassist:javassist:3.23.0-ga.classpath"/>
+    <path refid="library.gradle:_com.dorkbox:shellexecutor:1.1.classpath"/>
+    <path refid="library.gradle:_net.jodah:typetools:0.6.1.classpath"/>
+    <path refid="library.gradle:_net.java.dev.jna:jna-platform:4.5.2.classpath"/>
+    <path refid="library.gradle:_net.java.dev.jna:jna:4.5.2.classpath"/>
+    <path refid="library.gradle:_com.esotericsoftware:reflectasm:1.11.8.classpath"/>
+    <path refid="library.gradle:_org.objenesis:objenesis:2.6.classpath"/>
+    <path refid="library.gradle:_com.esotericsoftware:minlog:1.3.1.classpath"/>
+    <path refid="library.gradle:_org.lwjgl:lwjgl:3.2.0.classpath"/>
+  </path>
+  
+  <path id="notify.main.runtime.module.classpath">
+    <pathelement location="${notify.main.output.dir}"/>
+    <path refid="library.gradle:_com.dorkbox:tweenengine:8.3.classpath"/>
+    <path refid="library.gradle:_com.dorkbox:utilities:1.1.classpath"/>
+    <path refid="library.gradle:_com.dorkbox:objectpool:2.11.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_com.github.jponge:lzma-java:1.3.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.uuid:java-uuid-generator:3.1.5.classpath"/>
+    <path refid="library.gradle:_com.esotericsoftware:kryo:5.0.0-rc2.classpath"/>
+    <path refid="library.gradle:_io.netty:netty-all:4.1.24.final.classpath"/>
+    <path refid="library.gradle:_org.bouncycastle:bcpg-jdk15on:1.60.classpath"/>
+    <path refid="library.gradle:_org.bouncycastle:bcmail-jdk15on:1.60.classpath"/>
+    <path refid="library.gradle:_org.bouncycastle:bctls-jdk15on:1.60.classpath"/>
+    <path refid="library.gradle:_org.bouncycastle:bcpkix-jdk15on:1.60.classpath"/>
+    <path refid="library.gradle:_org.bouncycastle:bcprov-jdk15on:1.60.classpath"/>
+    <path refid="library.gradle:_org.lwjgl:lwjgl-xxhash:3.2.0.classpath"/>
+    <path refid="library.gradle:_org.javassist:javassist:3.23.0-ga.classpath"/>
+    <path refid="library.gradle:_com.dorkbox:shellexecutor:1.1.classpath"/>
+    <path refid="library.gradle:_net.jodah:typetools:0.6.1.classpath"/>
+    <path refid="library.gradle:_net.java.dev.jna:jna-platform:4.5.2.classpath"/>
+    <path refid="library.gradle:_net.java.dev.jna:jna:4.5.2.classpath"/>
+    <path refid="library.gradle:_com.esotericsoftware:reflectasm:1.11.8.classpath"/>
+    <path refid="library.gradle:_org.objenesis:objenesis:2.6.classpath"/>
+    <path refid="library.gradle:_com.esotericsoftware:minlog:1.3.1.classpath"/>
+    <path refid="library.gradle:_org.lwjgl:lwjgl:3.2.0.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.notify.main">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.notify.main">
+    <patternset refid="excluded.from.module.notify.main"/>
+  </patternset>
+  
+  <path id="notify.main.module.sourcepath">
+    <dirset dir="${module.notify.main.basedir}/../../../Notify">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.notify.main" depends="compile.module.notify.main.production,compile.module.notify.main.tests" description="Compile module Notify.main"/>
+  
+  <target name="compile.module.notify.main.production" depends="register.custom.compilers" description="Compile module Notify.main; production classes">
+    <mkdir dir="${notify.main.output.dir}"/>
+    <javac2 destdir="${notify.main.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.notify.main}/javac">
+      <compilerarg line="${compiler.args.notify.main}"/>
+      <bootclasspath refid="notify.main.module.bootclasspath"/>
+      <classpath refid="notify.main.module.production.classpath"/>
+      <src refid="notify.main.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.notify.main"/>
+    </javac2>
+    
+    <copy todir="${notify.main.output.dir}">
+      <fileset dir="${module.notify.main.basedir}/../../src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.notify.main.tests" depends="register.custom.compilers,compile.module.notify.main.production" description="compile module Notify.main; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.notify.main" description="cleanup module">
+    <delete dir="${notify.main.output.dir}"/>
+    <delete dir="${notify.main.testoutput.dir}"/>
+  </target>
+</project>

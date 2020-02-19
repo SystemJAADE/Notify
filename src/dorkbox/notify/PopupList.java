@@ -15,66 +15,63 @@
  */
 package dorkbox.notify;
 
-import java.awt.GraphicsConfiguration;
-import java.awt.Insets;
-import java.awt.Point;
-import java.awt.Toolkit;
+import dorkbox.util.ScreenUtil;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import dorkbox.util.ScreenUtil;
 
 /**
  * Contains a list of notification popups + the Y offset (if any)
  */
 class PopupList {
-    private int offsetY = 0;
-    private ArrayList<LookAndFeel> popups = new ArrayList<LookAndFeel>(4);
+  private int offsetY = 0;
+  private ArrayList<LookAndFeel> popups = new ArrayList<LookAndFeel>(4);
 
-    /**
-     * have to adjust for offsets when the window-manager has a toolbar that consumes space and prevents overlap.
-     *
-     * this is only done on the 2nd popup is added to the list
-     */
-    void calculateOffset(final boolean showFromTop, final int anchorX, final int anchorY) {
-        if (offsetY == 0) {
-            Point point = new Point(anchorX, anchorY);
-            GraphicsConfiguration gc = ScreenUtil.getMonitorAtLocation(point)
-                                                 .getDefaultConfiguration();
+  /**
+   * have to adjust for offsets when the window-manager has a toolbar that consumes space and prevents overlap.
+   * <p>
+   * this is only done on the 2nd popup is added to the list
+   */
+  void calculateOffset(final boolean showFromTop, final int anchorX, final int anchorY) {
+    if (offsetY == 0) {
+      Point point = new Point(anchorX, anchorY);
+      GraphicsConfiguration gc = ScreenUtil.getMonitorAtLocation(point)
+              .getDefaultConfiguration();
 
-            Insets screenInsets = Toolkit.getDefaultToolkit()
-                                         .getScreenInsets(gc);
+      Insets screenInsets = Toolkit.getDefaultToolkit()
+              .getScreenInsets(gc);
 
-            if (showFromTop) {
-                if (screenInsets.top > 0) {
-                    offsetY = screenInsets.top - LookAndFeel.MARGIN;
-                }
-            } else {
-                if (screenInsets.bottom > 0) {
-                    offsetY = screenInsets.bottom + LookAndFeel.MARGIN;
-                }
-            }
+      if (showFromTop) {
+        if (screenInsets.top > 0) {
+          offsetY = screenInsets.top - LookAndFeel.MARGIN;
         }
+      } else {
+        if (screenInsets.bottom > 0) {
+          offsetY = screenInsets.bottom + LookAndFeel.MARGIN;
+        }
+      }
     }
+  }
 
-    int getOffsetY() {
-        return offsetY;
-    }
+  int getOffsetY() {
+    return offsetY;
+  }
 
 
-    int size() {
-        return popups.size();
-    }
+  int size() {
+    return popups.size();
+  }
 
-    void add(final LookAndFeel lookAndFeel) {
-        popups.add(lookAndFeel);
-    }
+  void add(final LookAndFeel lookAndFeel) {
+    popups.add(lookAndFeel);
+  }
 
-    Iterator<LookAndFeel> iterator() {
-        return popups.iterator();
-    }
+  Iterator<LookAndFeel> iterator() {
+    return popups.iterator();
+  }
 
-    LookAndFeel get(final int index) {
-        return popups.get(index);
-    }
+  LookAndFeel get(final int index) {
+    return popups.get(index);
+  }
 }

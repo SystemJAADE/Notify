@@ -13,16 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import java.awt.FlowLayout;
-import java.awt.Image;
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import dorkbox.notify.Notify;
 import dorkbox.notify.Pos;
@@ -31,178 +21,175 @@ import dorkbox.util.ImageUtil;
 import dorkbox.util.LocationResolver;
 import dorkbox.util.ScreenUtil;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
+
 public
 class NotifyTest {
 
-    public static
-    void main(String[] args) {
-        Notify notify;
+  public static void main(String[] args) {
+    Notify notify;
 
 
-        JFrame frame = new JFrame("Test");
+    JFrame frame = new JFrame("Prueba");
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout());
+    JPanel panel = new JPanel();
+    panel.setLayout(new FlowLayout());
 
-        JLabel label = new JLabel("This is a label!");
+    JLabel label = new JLabel("Esta es una etiqueta!");
 
-        JButton button = new JButton();
-        button.setText("Press me");
+    JButton button = new JButton();
+    button.setText("Presioname");
 
-        panel.add(label);
-        panel.add(button);
+    panel.add(label);
+    panel.add(button);
 
-        frame.add(panel);
-        frame.setSize(900, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+    frame.add(panel);
+    frame.setSize(900, 600);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setVisible(true);
 
-        ScreenUtil.showOnSameScreenAsMouse_Center(frame);
-
-
-
-        int count = 2;
-
-        for (int i = 0; i < count; i++) {
-            final int finalI = i;
-            notify = Notify.create()
-                           .title("Notify title " + i)
-                           .text("This is a notification " + i + " popup message This is a notification popup message This is a " +
-                                 "notification popup message")
-                           .hideAfter(13000)
-                           .position(Pos.BOTTOM_RIGHT)
-                           // .position(Pos.CENTER)
-                      // .setScreen(0)
-                           .darkStyle()
-                           // .shake(1300, 4)
-                      .shake(1300, 10)
-                           .attach(frame)
-                      .hideCloseButton()
-                           .onAction(new ActionHandler<Notify>() {
-                               @Override
-                               public
-                               void handle(final Notify arg0) {
-                                   System.err.println("Notification " + finalI + " clicked on!");
-                               }
-                           });
-            notify.showWarning();
-
-            // try {
-            //     Thread.sleep(1000);
-            // } catch (InterruptedException e) {
-            //     e.printStackTrace();
-            // }
-        }
-
-        for (int i = 0; i < count; i++) {
-            final int finalI = i;
-            notify = Notify.create()
-                           .title("Notify title " + i)
-                           .text("This is a notification " + i + " popup message This is a notification popup message This is a " +
-                                 "notification popup message")
-                           .hideAfter(13000)
-                           .position(Pos.TOP_LEFT)
-                           // .position(Pos.CENTER)
-                      // .setScreen(0)
-                      //      .darkStyle()
-                           // .shake(1300, 4)
-                      // .shake(1300, 10)
-                           .attach(frame)
-                      // .hideCloseButton()
-                           .onAction(new ActionHandler<Notify>() {
-                               @Override
-                               public
-                               void handle(final Notify arg0) {
-                                   System.err.println("Notification " + finalI + " clicked on!");
-                               }
-                           });
-            notify.showWarning();
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+    ScreenUtil.showOnSameScreenAsMouse_Center(frame);
 
 
+    int count = 2;
+
+    for (int i = 0; i < count; i++) {
+      final int finalI = i;
+      notify = Notify.create()
+              .title("Notificar título " + i)
+              .text("Esta es una notificación " + i + " mensaje emergente Este es un mensaje emergente de notificación Este es un " +
+                      "mensaje emergente de notificación")
+              .hideAfter(13000)
+              .position(Pos.BOTTOM_RIGHT)
+              // .position(Pos.CENTER)
+              // .setScreen(0)
+              .darkStyle()
+              // .shake(1300, 4)
+              .shake(1300, 10)
+              .attach(frame)
+              .hideCloseButton()
+              .onAction(new ActionHandler<Notify>() {
+                @Override
+                public void handle(final Notify arg0) {
+                  System.err.println("Notificación " + finalI + " hizo clic en!");
+                }
+              });
+      notify.showNotify(Notify.DIALOG_ALARM);
+
+      // try {
+      //     Thread.sleep(1000);
+      // } catch (InterruptedException e) {
+      //     e.printStackTrace();
+      // }
+    }
+
+    for (int i = 0; i < count; i++) {
+      final int finalI = i;
+      notify = Notify.create()
+              .title("Notificar título " + i)
+              .text("Esta es una notificación " + i + " mensaje emergente Este es un mensaje emergente de notificación Este es un " +
+                      "mensaje emergente de notificación")
+              .hideAfter(13000)
+              .position(Pos.TOP_LEFT)
+              // .position(Pos.CENTER)
+              // .setScreen(0)
+              //      .darkStyle()
+              // .shake(1300, 4)
+              // .shake(1300, 10)
+              .attach(frame)
+              // .hideCloseButton()
+              .onAction(new ActionHandler<Notify>() {
+                @Override
+                public void handle(final Notify arg0) {
+                  System.err.println("Notificación " + finalI + " hizo clic en!");
+                }
+              });
+      notify.showNotify(Notify.DIALOG_CONTACT);
+
+      try {
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
 
 
-        for (int i = 0; i < count; i++) {
-            final int finalI = i;
-            notify = Notify.create()
-                           .title("Notify title " + i)
-                           .text("This is a notification " + i + " popup message This is a notification popup message This is a " +
-                                 "notification popup message")
-                           .hideAfter(3000)
-                           .position(Pos.TOP_RIGHT)
+    for (int i = 0; i < count; i++) {
+      final int finalI = i;
+      notify = Notify.create()
+              .title("Notificar título " + i)
+              .text("Esta es una notificación " + i + " mensaje emergente Este es un mensaje emergente de notificación Este es un " +
+                      "mensaje emergente de notificación")
+              .hideAfter(3000)
+              .position(Pos.TOP_RIGHT)
 //                       .setScreen(0)
-                           .darkStyle()
-                           // .shake(1300, 4)
-                      .shake(1300, 10)
-                      .hideCloseButton()
-                           .onAction(new ActionHandler<Notify>() {
-                               @Override
-                               public
-                               void handle(final Notify arg0) {
-                                   System.err.println("Notification " + finalI + " clicked on!");
-                               }
-                           });
-            notify.show();
+              .darkStyle()
+              // .shake(1300, 4)
+              .shake(1300, 10)
+              .hideCloseButton()
+              .onAction(new ActionHandler<Notify>() {
+                @Override
+                public void handle(final Notify arg0) {
+                  System.err.println("Notificación " + finalI + " hizo clic en!");
+                }
+              });
+      notify.show();
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+      try {
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
 
-        InputStream resourceAsStream = LocationResolver.getResourceAsStream("notify-dark.png");
-        Image image = null;
-        try {
-            image = ImageUtil.getImageImmediate(ImageIO.read(resourceAsStream));
-            // image = image.getScaledInstance(144, 104, Image.SCALE_SMOOTH);
-            // image = image.getScaledInstance(104, 144, Image.SCALE_SMOOTH);
-            image = image.getScaledInstance(144, 144, Image.SCALE_SMOOTH);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    InputStream resourceAsStream = LocationResolver.getResourceAsStream("notify-dark.png");
+    Image image = null;
+    try {
+      image = ImageUtil.getImageImmediate(ImageIO.read(resourceAsStream));
+      // image = image.getScaledInstance(144, 104, Image.SCALE_SMOOTH);
+      // image = image.getScaledInstance(104, 144, Image.SCALE_SMOOTH);
+      image = image.getScaledInstance(144, 144, Image.SCALE_SMOOTH);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
 
-        for (int i = 0; i < count; i++) {
-            final int finalI = i;
-            notify = Notify.create()
-                           .title("Notify title " + i)
-                           .text("This is a notification " + i + " popup message This is a notification popup message This is a " +
-                                 "notification popup message")
-                           // .hideAfter(13000)
-                           .position(Pos.BOTTOM_LEFT)
+    for (int i = 0; i < count; i++) {
+      final int finalI = i;
+      notify = Notify.create()
+              .title("Notificar título " + i)
+              .text("Esta es una notificación " + i + " mensaje emergente Este es un mensaje emergente de notificación Este es un " +
+                      "mensaje emergente de notificación")
+              // .hideAfter(13000)
+              .position(Pos.BOTTOM_LEFT)
 //                       .setScreen(0)
 //                            .darkStyle()
-                           // .shake(1300, 4)
-                           // .shake(1300, 10)
-                           // .hideCloseButton()
-                           .onAction(new ActionHandler<Notify>() {
-                               @Override
-                               public
-                               void handle(final Notify arg0) {
-                                   System.err.println("Notification " + finalI + " clicked on!");
-                               }
-                           });
+              // .shake(1300, 4)
+              // .shake(1300, 10)
+              // .hideCloseButton()
+              .onAction(new ActionHandler<Notify>() {
+                @Override
+                public void handle(final Notify arg0) {
+                  System.err.println("Notificación " + finalI + " hizo clic en!");
+                }
+              });
 
-            if (i == 0) {
-                notify.image(image);
-                notify.show();
-            }
-            else {
-                notify.showConfirm();
-            }
+      if (i == 0) {
+        notify.image(image);
+        notify.show();
+      } else {
+        notify.showNotify(Notify.DIALOG_CONFIRM);
+      }
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+      try {
+        Thread.sleep(1000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
     }
+  }
 }
